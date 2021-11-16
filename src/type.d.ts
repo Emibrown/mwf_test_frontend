@@ -12,4 +12,10 @@ type UserAction = {
     user: IUser
 }
 
+type Register = {
+    name: string,
+    email: string,
+    password: string 
+}
+
 type DispatchType = (args: UserAction) => UserAction

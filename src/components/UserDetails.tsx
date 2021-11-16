@@ -3,6 +3,7 @@ import { useSelector, shallowEqual, useDispatch } from "react-redux"
 import { Dispatch } from "redux"
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as actionTypes from "../store/actionTypes"
+import {addUser} from '../store/actionCreators'
 
 interface Props {
     setStep:any
@@ -25,7 +26,7 @@ const UserDetails: React.FC<Props> = ({
     const dispatch: Dispatch<any> = useDispatch()
 
     const onSubmit: SubmitHandler<Inputs> = data => {
-        dispatch({type:actionTypes.ADD_USER,user: data})
+        dispatch(addUser(data))
         setStep(2)
     };
 

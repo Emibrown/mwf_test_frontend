@@ -6,11 +6,7 @@ import {
 } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
-
-
-// const baseUrl = "http://127.0.0.1:8080"
-
-const baseUrl = "https://mwf-test-backend.cleverapps.io"
+import UserService from "../service/userService";
 
 
 interface Props {
@@ -43,25 +39,17 @@ const Password: React.FC<Props> = ({
     const onSubmit: SubmitHandler<Inputs> = async data => {
        setLoading(true)
        setError(null)
-       try{
-            const options = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
-            await axios.post(baseUrl+"/register",{
-                ...user,
-                password:data.password
-            },options)
-            .then(async(response) => {
-                setStep(3)
-            }).catch(error => {
-                setError(error.response.data.message)
-            });
-            setLoading(false)
-        }catch(e){
-            console.log(e)
-        }   
+       UserService.register({
+        ...user,
+        password:data.password
+       })
+        .then(() => {
+            setStep(3)
+        },
+        error => {
+            setError(error.response.data.message)
+        })
+        setLoading(false)
     };
 
 

@@ -35,8 +35,6 @@ const home = () => {
             textAlign:"center"
         }}>Thanks <br/> <br/> {user.name} <br/> {user.email} <br/><br/> your Registration has been completed</h2>
       </div>
-
-
       <div style={{
         marginTop:"40px",
       }}>
